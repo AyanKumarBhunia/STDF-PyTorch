@@ -1,0 +1,3 @@
+system: ubuntu
+dir_dataset: /home/ayanisizeco/STDF-PyTorch/Dataset/MFQEv2_dataset/  # path to MFQEv2_dataset/
+qp: 27  # (22 | 27 | 32 | 37 | 42) 
