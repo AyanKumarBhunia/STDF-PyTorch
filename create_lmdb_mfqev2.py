@@ -23,7 +23,7 @@ args = parser.parse_args()
 
 yml_path = args.opt_path
 radius = 3  # must be 3!!! otherwise, you should change dataset.py
-
+target_path = '/home/ayanisizeco/STDF-PyTorch/Dataset/MFQEv2_dataset/TrainData_LMDB/QP27'
 
 def create_lmdb_for_mfqev2():
     # video info
@@ -36,8 +36,8 @@ def create_lmdb_for_mfqev2():
         lq_path = fp['dataset']['train']['lq_path']
     gt_dir = op.join(root_dir, gt_folder)
     lq_dir = op.join(root_dir, lq_folder)
-    lmdb_gt_path = op.join(root_dir, gt_path)
-    lmdb_lq_path = op.join(root_dir, lq_path)
+    lmdb_gt_path = op.join(target_path, gt_path)
+    lmdb_lq_path = op.join(target_path, lq_path)
 
     # scan all videos
     print('Scaning videos...')

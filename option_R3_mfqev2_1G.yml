@@ -5,7 +5,7 @@ dataset:
     # for lmdb
     root: /home/ayanisizeco/STDF-PyTorch/Dataset/MFQEv2_dataset/
     gt_folder: train_108/raw/
-    lq_folder: train_108/HM16.5_LDP/QP37/
+    lq_folder: train_108/HM16.5_LDP/QP27/
     
     # for dataset
     gt_path: mfqev2_train_gt.lmdb

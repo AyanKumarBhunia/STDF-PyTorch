@@ -9,9 +9,9 @@ import glob
 import os
 
 ckp_path = 'exp/MFQEv2_R3_enlarge300x/ckp_290000.pt'  # trained at QP37, LDP, HM16.5
-raw_folder = '/home/ayanisizeco/STDF-PyTorch/Dataset/XIPH_HD/YUV_Orig_1080P/'
-lq_folder = '/home/ayanisizeco/STDF-PyTorch/Dataset/XIPH_HD/YUV_Codec_1080P/'
-target_folder = '/home/ayanisizeco/STDF-PyTorch/Dataset/XIPH_HD/YUV_AAAI_1080P/'
+raw_folder = '/home/ayanisizeco/STDF-PyTorch/Dataset/MFQEv2_dataset/test_18/raw/'
+lq_folder = '/home/ayanisizeco/STDF-PyTorch/Dataset/MFQEv2_dataset/test_18/HM16.5_LDP/QP37/'
+target_folder = '/home/ayanisizeco/STDF-PyTorch/Dataset/MFQEv2_dataset/test_18/enhanced_AAAI/QP37_redo/'
 
 
 # raw_yuv_path = '/home/ayanisizeco/STDF-PyTorch/Dataset/MFQEv2_dataset/test_18/raw/BasketballPass_416x240_500.yuv'
@@ -110,6 +110,8 @@ def evaluate(file_name):
 
         # enhance
         enhanced_frm = model(input_data)
+        # enhanced_frm = (enhanced_frm - enhanced_frm.min())/(enhanced_frm.max() - enhanced_frm.min())
+        enhanced_frm = torch.clamp(enhanced_frm, min=0.0, max=1.0)
         y_seq_enhanced[idx] = enhanced_frm[0, 0, ...].cpu().detach().numpy()
 
         # eval
@@ -120,10 +122,8 @@ def evaluate(file_name):
         enh_psnr_counter.accum(volume=batch_perf)
 
         # display
-        pbar.set_description(
-            "[{:.3f}] {:s} -> [{:.3f}] {:s}"
-                .format(batch_ori, unit, batch_perf, unit)
-        )
+        pbar.set_description("[{:.3f}] {:s} -> [{:.3f}] {:s}"
+                .format(batch_ori, unit, batch_perf, unit))
         pbar.update()
 
     pbar.close()
