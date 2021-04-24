@@ -32,13 +32,13 @@ class MFQEv2Dataset(data.Dataset):
         
         # dataset paths
         self.gt_root = op.join(
-            'data/MFQEv2/', 
+            '/home/ayanisizeco/STDF-PyTorch/Dataset/MFQEv2_dataset/',
             self.opts_dict['gt_path']
-            )
+        )
         self.lq_root = op.join(
-            'data/MFQEv2/', 
+            '/home/ayanisizeco/STDF-PyTorch/Dataset/MFQEv2_dataset/',
             self.opts_dict['lq_path']
-            )
+        )
 
         # extract keys from meta_info.txt
         self.meta_info_path = op.join(
@@ -149,11 +149,11 @@ class VideoTestMFQEv2Dataset(data.Dataset):
 
         # dataset paths
         self.gt_root = op.join(
-            'data/MFQEv2/', 
+            '/home/ayanisizeco/STDF-PyTorch/Dataset/MFQEv2_dataset/',
             self.opts_dict['gt_path']
             )
         self.lq_root = op.join(
-            'data/MFQEv2/', 
+            '/home/ayanisizeco/STDF-PyTorch/Dataset/MFQEv2_dataset/',
             self.opts_dict['lq_path']
             )
         

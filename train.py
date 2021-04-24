@@ -47,10 +47,12 @@ def receive_arg():
         )
     
     opts_dict['train']['num_gpu'] = torch.cuda.device_count()
-    if opts_dict['train']['num_gpu'] > 1:
-        opts_dict['train']['is_dist'] = True
-    else:
-        opts_dict['train']['is_dist'] = False
+    # if opts_dict['train']['num_gpu'] > 1:
+    #     opts_dict['train']['is_dist'] = True
+    # else:
+    #     opts_dict['train']['is_dist'] = False
+
+    opts_dict['train']['is_dist'] = False
     
     opts_dict['test']['restore_iter'] = int(
         opts_dict['test']['restore_iter']
@@ -90,7 +92,7 @@ def main():
 
     if rank == 0:
         log_dir = op.join("exp", opts_dict['train']['exp_name'])
-        # utils.mkdir(log_dir)
+        utils.mkdir(log_dir)
         log_fp = open(opts_dict['train']['log_path'], 'w')
 
         # log all parameters
