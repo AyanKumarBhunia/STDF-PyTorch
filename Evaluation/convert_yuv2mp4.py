@@ -25,7 +25,7 @@ if __name__ == "__main__":
         # MKV2MP4
         # cmd = (f'ffmpeg -i {one_vid_path} -c:v libx264 -preset ultrafast -crf 0 {targ_path}.mp4')
 
-        os.system(cmd)
+        # os.system(cmd)
         pool.apply_async(
             func=_compress,
             args=(cmd,),

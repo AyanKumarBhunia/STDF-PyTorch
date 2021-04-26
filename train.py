@@ -195,6 +195,8 @@ def main():
     model = MFVQE(opts_dict=opts_dict['network'])
 
     model = model.to(rank)
+    # model.load_state_dict(torch.load('~/STDF-PyTorch/Code/exp/QP27/MFQEv2_R3_enlarge300x/ckp_220000.pt')['state_dict'])
+
     if opts_dict['train']['is_dist']:
         model = DDP(model, device_ids=[rank])
 
@@ -238,6 +240,7 @@ def main():
         model.parameters(), 
         **opts_dict['train']['optim']
         )
+
 
     # define scheduler
     if opts_dict['train']['scheduler']['is_on']:

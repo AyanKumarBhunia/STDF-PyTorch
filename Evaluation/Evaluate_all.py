@@ -67,8 +67,12 @@ class Counter():
         SSIM_Gain = self.avg_Enhanced_SSIM  - self.avg_Codec_SSIM
         MSSSIM_Gain = self.avg_Enhanced_MSSSIM  - self.avg_Codec_MSSSIM
 
-        print(f'VMAF_gain: {VMAF_Gain} \n PSNR_Gain: {PSNR_Gain} \n '
+        msg = (f'VMAF_gain: {VMAF_Gain} \n PSNR_Gain: {PSNR_Gain} \n '
               f'SSIM_Gain: {SSIM_Gain} \n MSSSIM_Gain: {MSSSIM_Gain}')
+
+        with open('results.txt', 'a') as file:
+            file.write(msg)
+        print(msg)
 
 
 if __name__ == "__main__":
@@ -79,9 +83,17 @@ if __name__ == "__main__":
     vmaf_folder = './Results'
     vid_lst = glob.glob(op.join(enhanced_folder, '*.mp4'))
     util_counter = Counter()
-    # pool = mp.Pool()
 
-    for one_vid_path in vid_lst:
+
+    for i_num, one_vid_path in enumerate(vid_lst):
+
+        print('____________________________________')
+        print('____________________________________')
+        print('____________________________________')
+        print(i_num, os.path.basename(one_vid_path))
+        print('____________________________________')
+        print('____________________________________')
+
 
         enhanced_file = one_vid_path
         filename = os.path.basename(enhanced_file).split('_AAAI')[0]
@@ -91,6 +103,7 @@ if __name__ == "__main__":
         vmaf_file = os.path.join(vmaf_folder,  filename + '_enhanced.json')
         cmd = get_cmd_evaluate(enhanced_file, original_input_file, vmaf_file)
         os.system(cmd)
+
         with open(vmaf_file) as f:
             data = json.load(f)
         enhanced_score = [data['VMAF score'], data['PSNR score'], data['SSIM score'], data['MS-SSIM score']]
