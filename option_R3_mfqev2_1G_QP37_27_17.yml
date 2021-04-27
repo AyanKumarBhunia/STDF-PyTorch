@@ -1,15 +1,17 @@
 dataset:
   train:  # LMDB
     type: MFQEv2Dataset
-    
+
     # for lmdb
     root: /home/ayanisizeco/STDF-PyTorch/Dataset/MFQEv2_dataset/
     gt_folder: train_108/raw/
     lq_folder: train_108/HM16.5_LDP/QP37/
-    
+
     # for dataset
-    gt_path: TrainData_LMDB/QP37/mfqev2_train_gt.lmdb
-    lq_path: TrainData_LMDB/QP37/mfqev2_train_lq.lmdb
+    gt_path: TrainData_LMDB/QP_37_27_17/mfqev2_train_gt.lmdb
+    lq_path: TrainData_LMDB/QP_37_27_17/mfqev2_train_lq.lmdb
+#    gt_path: mfqev2_train_gt.lmdb
+#    lq_path: mfqev2_train_lq.lmdb
     meta_info_fp: meta_info.txt
     gt_size: 128  # ground truth patch size: gt_size * gt_size
     use_flip: True
@@ -18,11 +20,11 @@ dataset:
 
     # for datasampler
     enlarge_ratio: 300  # enlarge dataset by randomly cropping.
-    
+
     # for dataloader
     num_worker_per_gpu: 12  # 12 in total. mainly affect IO speed
     batch_size_per_gpu: 32  # bs=32, divided by 4 GPUs
-  
+
   val:  # Disk IO
     type: VideoTestMFQEv2Dataset
     #root: /media/x/Database/MFQEv2/
@@ -49,7 +51,7 @@ network:
     nb: 3  # num of conv layers
     base_ks: 3
     deform_ks: 3  # size of the deformable kernel
-  
+
   qenet:
     in_nc: 64  # = out_nc of stdf
     out_nc: 1  # 1 for Y
@@ -58,10 +60,10 @@ network:
     base_ks: 3
 
 train:
-  exp_name: QP37/MFQEv2_R3_enlarge300x_SSIM+SquareError  # default: timestr. None: ~
+  exp_name: QPALL/MFQEv2_R3_enlarge300x_QP37_27_17  # default: timestr. None: ~
   random_seed: 7
   pre-val: False  # evaluate criterion before training, e.g., ori PSNR
-  num_iter: !!float 3e+5
+  num_iter: !!float 6e+5
   interval_print: !!float 100
   interval_val: !!float 10e+3  #5e+3  # also save model
   pbar_len: 100

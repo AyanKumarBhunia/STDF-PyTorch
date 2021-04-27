@@ -21,7 +21,7 @@ def receive_arg():
     Record in opts_dict."""
     parser = argparse.ArgumentParser()
     parser.add_argument(
-        '--opt_path', type=str, default='option_R3_mfqev2_1G.yml',
+        '--opt_path', type=str, default='option_R3_mfqev2_1G_QP37_27_17.yml',
         help='Path to option YAML file.'
         )
     parser.add_argument(

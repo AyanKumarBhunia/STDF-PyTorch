@@ -11,8 +11,9 @@ import os
 ckp_path = 'exp/QP37/MFQEv2_R3_enlarge300x/ckp_225000.pt'  # trained at QP37, LDP, HM16.5
 raw_folder = '/home/ayanisizeco/STDF-PyTorch/Dataset/MFQEv2_dataset/test_18/raw/'
 lq_folder = '/home/ayanisizeco/STDF-PyTorch/Dataset/MFQEv2_dataset/test_18/HM16.5_LDP/QP37/'
-target_folder = '/home/ayanisizeco/STDF-PyTorch/Dataset/MFQEv2_dataset/test_18/enhanced_AAAI/QP37_Redo_225K/'
-
+target_folder = '/home/ayanisizeco/STDF-PyTorch/Dataset/MFQEv2_dataset/test_18/enhanced_AAAI_ModelQP37/QP37_2/'
+if not os.path.isdir(target_folder):
+    os.mkdir(target_folder)
 
 # raw_yuv_path = '/home/ayanisizeco/STDF-PyTorch/Dataset/MFQEv2_dataset/test_18/raw/BasketballPass_416x240_500.yuv'
 # lq_yuv_path = '/home/ayanisizeco/STDF-PyTorch/Dataset/MFQEv2_dataset/test_18/HM16.5_LDP/QP37/BasketballPass_416x240_500.yuv'

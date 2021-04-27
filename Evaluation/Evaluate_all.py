@@ -67,20 +67,30 @@ class Counter():
         SSIM_Gain = self.avg_Enhanced_SSIM  - self.avg_Codec_SSIM
         MSSSIM_Gain = self.avg_Enhanced_MSSSIM  - self.avg_Codec_MSSSIM
 
-        msg = (f'VMAF_gain: {VMAF_Gain} \n PSNR_Gain: {PSNR_Gain} \n '
-              f'SSIM_Gain: {SSIM_Gain} \n MSSSIM_Gain: {MSSSIM_Gain}')
+        msg = ( f'avg_Codec_VMAF: {self.avg_Codec_VMAF} \n'
+               f'avg_Codec_PSNR: {self.avg_Codec_PSNR} \n'
+               f'avg_Codec_SSIM: {self.avg_Codec_SSIM} \n'
+               f'avg_Codec_MSSSIM: {self.avg_Codec_MSSSIM} \n'  
+               f'avg_Enhanced_VMAF: {self.avg_Enhanced_VMAF} \n'
+               f'avg_Enhanced_PSNR: {self.avg_Enhanced_PSNR} \n'
+               f'avg_Enhanced_SSIM: {self.avg_Enhanced_SSIM} \n'
+               f'avg_Enhanced_MSSSIM: {self.avg_Enhanced_MSSSIM} \n' 
+              f'VMAF_gain: {VMAF_Gain} \n '
+              f'PSNR_Gain: {PSNR_Gain} \n '
+              f'SSIM_Gain: {SSIM_Gain} \n'
+              f' MSSSIM_Gain: {MSSSIM_Gain}')
 
-        with open('results.txt', 'a') as file:
+        with open('results.txt', 'w') as file:
             file.write(msg)
         print(msg)
 
 
 if __name__ == "__main__":
     raw_folder = '/home/ayanisizeco/STDF-PyTorch/Dataset/To_Deliver_MP4/Test0/source/'
-    enhanced_folder = '/home/ayanisizeco/STDF-PyTorch/Dataset/To_Deliver_MP4/Test0/AAAI20/'
-    codec_folder = '/home/ayanisizeco/STDF-PyTorch/Dataset/To_Deliver_MP4/Test0/codec/'
+    enhanced_folder = '/home/ayanisizeco/STDF-PyTorch/Dataset/To_Deliver_MP4/Test0/AAAI20/ModelQP37EvalonQP27/'
+    codec_folder = '/home/ayanisizeco/STDF-PyTorch/Dataset/To_Deliver_MP4/Test0/codec/QP27/'
 
-    vmaf_folder = './Results'
+    vmaf_folder = './Results_ModelQP37EvalonQP27'
     vid_lst = glob.glob(op.join(enhanced_folder, '*.mp4'))
     util_counter = Counter()
 
@@ -98,7 +108,7 @@ if __name__ == "__main__":
         enhanced_file = one_vid_path
         filename = os.path.basename(enhanced_file).split('_AAAI')[0]
         original_input_file = os.path.join(raw_folder, filename + '_source.mp4')
-        codec_file = os.path.join(codec_folder, filename + '_codec_QP37.mp4')
+        codec_file = os.path.join(codec_folder, filename + '_codec_QP27.mp4')
 
         vmaf_file = os.path.join(vmaf_folder,  filename + '_enhanced.json')
         cmd = get_cmd_evaluate(enhanced_file, original_input_file, vmaf_file)
