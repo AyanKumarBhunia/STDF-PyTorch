@@ -87,10 +87,10 @@ class Counter():
 
 if __name__ == "__main__":
     raw_folder = '/home/ayanisizeco/STDF-PyTorch/Dataset/To_Deliver_MP4/Test0/source/'
-    enhanced_folder = '/home/ayanisizeco/STDF-PyTorch/Dataset/To_Deliver_MP4/Test0/AAAI20/ModelQP37EvalonQP27/'
-    codec_folder = '/home/ayanisizeco/STDF-PyTorch/Dataset/To_Deliver_MP4/Test0/codec/QP27/'
+    enhanced_folder = '/home/ayanisizeco/STDF-PyTorch/Dataset/To_Deliver_MP4/Test0/AAAI20/ModelQP17_27_37_EvalonQP37/'
+    codec_folder = '/home/ayanisizeco/STDF-PyTorch/Dataset/To_Deliver_MP4/Test0/codec/QP37/'
 
-    vmaf_folder = './Results_ModelQP37EvalonQP27'
+    vmaf_folder = './Results_ModelQP17_27_37_EvalonQP37'
     vid_lst = glob.glob(op.join(enhanced_folder, '*.mp4'))
     util_counter = Counter()
 
@@ -108,7 +108,7 @@ if __name__ == "__main__":
         enhanced_file = one_vid_path
         filename = os.path.basename(enhanced_file).split('_AAAI')[0]
         original_input_file = os.path.join(raw_folder, filename + '_source.mp4')
-        codec_file = os.path.join(codec_folder, filename + '_codec_QP27.mp4')
+        codec_file = os.path.join(codec_folder, filename + '_codec_QP37.mp4')
 
         vmaf_file = os.path.join(vmaf_folder,  filename + '_enhanced.json')
         cmd = get_cmd_evaluate(enhanced_file, original_input_file, vmaf_file)
